@@ -22,17 +22,23 @@ class listener(StreamListener):
             with open("backup.txt", 'a') as backup:
                 backup.write(str(all_data) + "\n")
                 backup.close()
+        """
 
+A	|B	 |C	|D	  |E	  |F		    |G		 |H		|I	    |J	 |K
+keyword	|UserName|UserID|TweetText|TweetID|DateOfPublication|#ofFollowers|#ofFollowings	|#ofStatuses|URLs|Label
+
+        No keyword and label
+        """
             text = str(all_data["text"]).encode("utf-8")
-
-        # print "text" + text
             id = str(all_data["id"]).encode("utf-8")
-
-        # print "id" + str(id)
             timestamp = str(all_data["timestamp_ms"]).encode("utf-8")
-
-        # print "stimestamp" + str(timestamp)
             sn = str(all_data["user"]["screen_name"]).encode("utf-8")
+            user_id = str(all_data["user"]["id"]).encode("utf-8")
+            create = str(all_data["created_at"]).encode("utf-8")
+            follower = str(all_data["user"]["follower_count"]).encode("utf-8")
+            following = str(all_data["user"]["following"]).encode("utf-8")
+            status = str(all_data["user"]["statuses_count"]).encode("utf-8")
+            url = str(all_data["urls"]["url"]).encode("utf-8")
 
         # text = data.split(',"text":"')[1].split('","source')[0]
         # name = data.split(',"screen_name":"')[1].split('","location')[0]
@@ -41,6 +47,12 @@ class listener(StreamListener):
             contentlist.append(id)
             contentlist.append(timestamp)
             contentlist.append(sn)
+            contentlist.append(user_id)
+            contentlist.append(create)
+            contentlist.append(follower)
+            contentlist.append(following)
+            contentlist.append(status)
+            contentlist.append(url)
             print contentlist
             f = open("tweets3.csv", 'ab')
             wrt = csv.writer(f, dialect='excel')
