@@ -14,11 +14,11 @@ class semanticFeatureExtractor:
     def opinionWords(self, tweet):
         with open('OpinionWords.csv', 'rb') as lexicon:
             reader = csv.reader(lexicon)
-            opinion = False
+            opinion = 0
             for row in reader:
                 for opinionWord in row:
                     if opinionWord in tweet:
-                        opinion = True
+                        opinion = 1
             lexicon.close()
         return opinion
 
@@ -40,9 +40,9 @@ class semanticFeatureExtractor:
 
     #Check for vulgar words in the input tweets
     def vulgarWords(self, tweet):
-        vulgar = False
+        vulgar = 0
         if profanity.contains_profanity(tweet):
-            vulgar = True
+            vulgar = 1
         return vulgar
 
 #----------------------------------------------------------------------------------------------------------------------
@@ -54,11 +54,13 @@ class semanticFeatureExtractor:
     def speechAct(self, tweet):
         with open('SpeechActVerbs.csv', 'rb') as lexicon:
             reader = csv.reader(lexicon)
-            speechAct = False
+            speechAct = []
             for row in reader:
                 for speechActWord in row:
                     if speechActWord in tweet:
-                        speechAct = True
+                        speechAct.append(1)
+                    else:
+                        speechAct.append(0)
             lexicon.close()
         return speechAct
 
