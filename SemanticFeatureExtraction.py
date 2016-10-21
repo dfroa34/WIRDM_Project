@@ -7,10 +7,15 @@ class semanticFeatureExtractor:
 
 #----------------------------------------------------------------------------------------------------------------------
 
-    #Check for opinion words by comparing every word from every tweet
+    #Check for opinion words by comparing every word in a tweet
     #with every opinion word in the list of opinion words
     #
-    #Please note that the input needs to be a PROCESSED tweet!
+    #Input:
+    #   - tweet: a tweet to check for any opinion words
+    #   Please note that the input needs to be a PREPROCESSED tweet!
+    #Output:
+    #   - opinion: a list of boolean values (0, 1) indicating the presence
+    #       of a certain opinion word in the given tweet
     def opinionWords(self, tweet):
         with open('OpinionWords.csv', 'rb') as lexicon:
             reader = csv.reader(lexicon)
@@ -38,7 +43,14 @@ class semanticFeatureExtractor:
 
 #----------------------------------------------------------------------------------------------------------------------
 
-    #Check for vulgar words in the input tweets
+    #Check for vulgar words by comparing every word in a tweet
+    #with every vulgar word in the list of vulgar words
+    #
+    #Input:
+    #   - tweet: a tweet to check for any vulgar words
+    #Output:
+    #   - vulgar: a single boolean value (0, 1) indicating
+    #       the presence of a vulgar word in the given tweet
     def vulgarWords(self, tweet):
         vulgar = 0
         if profanity.contains_profanity(tweet):
@@ -47,10 +59,15 @@ class semanticFeatureExtractor:
 
 #----------------------------------------------------------------------------------------------------------------------
 
-    #Check for speech act verbs in the input tweets by comparing every word
-    #from every tweet with every speech act verb in the list of speech act verbs
+    #Check for speech act verbs by comparing every word in a tweet
+    #with every speech act verb in the list of speech act verbs
     #
-    #Please note that the input needs to be a PROCESSED tweet!
+    #Input:
+    #   - tweet: a tweet to check for any speech act verbs
+    #   Please note that the input needs to be a PREPROCESSED tweet!
+    #Output:
+    #   - speechAct: a single boolean value (0, 1) indicating
+    #       the presence of a speech act verb in the given tweet
     def speechAct(self, tweet):
         with open('SpeechActVerbs.csv', 'rb') as lexicon:
             reader = csv.reader(lexicon)
