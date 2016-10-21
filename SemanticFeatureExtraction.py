@@ -58,9 +58,9 @@ class semanticFeatureExtractor:
             for row in reader:
                 for speechActWord in row:
                     if speechActWord in tweet:
-                        speechAct.append(1)
+                        speechAct + [1]
                     else:
-                        speechAct.append(0)
+                        speechAct + [0]
             lexicon.close()
         return speechAct
 
