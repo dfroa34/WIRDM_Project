@@ -1,4 +1,5 @@
 import GetUserTweets as userTweets
+import datetime
 
 #######################################################################################################################
 
@@ -21,9 +22,9 @@ def originality(username, numberOfTweets):
                 numberOfRetweets += 1
             else:
                 numberOfOriginalTweets += 1
-        if numberOfRetweets == 0:
+        if (numberOfOriginalTweets + numberOfRetweets) == 0:
             numberOfRetweets = 1
-        originality = float(numberOfOriginalTweets) / float(numberOfOriginalTweets+numberOfRetweets)
+        originality = float(numberOfOriginalTweets) / float(numberOfOriginalTweets + numberOfRetweets)
     except Exception, e:
         originality = "N/A"
         pass
@@ -65,6 +66,30 @@ def influence(username):
         followers = user.followers_count
     except Exception, e:
         followers = "N/A"
+        pass
     return followers
+
+#----------------------------------------------------------------------------------------------------------------------
+
+# Check how engaged a user is with Twitter. This means how
+# active a user is with tweeting activites on Twitter
+#
+# Input:
+#   - username: a user to check the engagement for
+#   - numberOfTweets: the number of tweets from the given user
+# Output:
+#   - engagement: an indication how active a user is
+def engagement(username, numberOfTweets):
+    try:
+        user = userTweets.api.get_user(username)
+        numberOfFavs = user.favourites_count
+        accountAge = datetime.datetime.now().date() - user.created_at.date()
+        if accountAge.days == 0:
+            accountAge.days = 1
+        engagement = (float(numberOfTweets + numberOfFavs)) / float(accountAge.days)
+    except Exception, e:
+        engagement = "N/A"
+        pass
+    return engagement
 
 #######################################################################################################################
