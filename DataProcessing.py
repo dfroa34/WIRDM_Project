@@ -17,7 +17,7 @@ feature_list = []
 for tweet in rawTweets:
     tweetData.append(ast.literal_eval(tweet))
 
-for tweet in tweetData[0:5]:
+for tweet in tweetData[0:200]:
     feature = []
     #Extract basic features
     userName = tweet['user']['screen_name'].encode('utf-8')

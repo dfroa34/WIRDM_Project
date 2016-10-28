@@ -70,6 +70,3 @@ def get_all_tweets(screen_name):
 if __name__ == '__main__':
     # pass in the username of the account you want to download
     get_all_tweets("sonar_guy")
-
-def get_X_tweets(screen_name, number_of_tweets):
-    return api.user_timeline(screen_name = screen_name, count = number_of_tweets, include_rts = True)
