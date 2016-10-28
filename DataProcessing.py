@@ -66,7 +66,7 @@ for tweet in tweetData[0:200]:
     origin = UserFeatureExtraction.originality(userName, status)
     credit = UserFeatureExtraction.credibility(userName)
     influence = UserFeatureExtraction.influence(userName)
-    engagement = UserFeatureExtraction.engagement(userName,)
+    engagement = UserFeatureExtraction.engagement(userName, status)
     feature.append(origin)
     feature.append(credit)
     feature.append(influence)
