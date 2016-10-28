@@ -14,8 +14,8 @@ class semanticFeatureExtractor:
     #   - tweet: a tweet to check for any opinion words
     #   Please note that the input needs to be a PREPROCESSED tweet!
     #Output:
-    #   - opinion: a list of boolean values (0, 1) indicating the presence
-    #       of a certain opinion word in the given tweet
+    #   - opinion: a single boolean value (0, 1) indicating the
+    #      presence of a certain opinion word in the given tweet
     def opinionWords(self, tweet):
         with open('OpinionWords.csv', 'rb') as lexicon:
             reader = csv.reader(lexicon)
