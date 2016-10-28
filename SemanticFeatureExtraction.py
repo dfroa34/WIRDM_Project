@@ -93,7 +93,7 @@ class semanticFeatureExtractor:
     #Output:
     #   - biGram: a list of boolean values (0, 1) indicating
     #      the presence of a bigram in the given tweet
-    def biGrams(tweet):
+    def biGrams(self, tweet):
         with open('BiGrams.csv', 'rb') as lexicon:
             reader = csv.reader(lexicon)
             biGram = []

@@ -56,5 +56,3 @@ def credibility(username):
 def influence(username):
     user = GetUserTweets.api.get_user(username)
     return user.followers_count
-
-#----------------------------------------------------------------------------------------------------------------------

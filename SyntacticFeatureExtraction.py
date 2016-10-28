@@ -3,38 +3,52 @@ __author__ = 's149830'
 import csv
 
 class syntacticFeatureExtractor:
+    """
+    Input: text of the tweet
+    Output: if the text contains '!' and '?'
+    """
     def punctuation(self, tweet):
-        containQ = False
-        containE = False
+        containQ = 0
+        containE = 0
         if ('!' in tweet):
-            containQ = True
+            containQ = 1
         if ('?' in tweet):
-            containE = True
-        print containQ, containE
-        return containQ, containE
+            containE = 1
+        #print containQ, containE
+        return [containQ, containE]
 
+    """
+    Input: Text of the tweet
+    Output: If the text contains '#', '@' or 'RT'
+    """
     def specificCharacter(self, tweet):
-        hashtag = False
-        a = False
-        retweet = False
+        hashtag = 0
+        a = 0
+        retweet = 0
         if('#' in tweet):
-            hashtag = True
+            hashtag = 1
         if('@' in tweet):
-            a = True
+            a = 1
         if('RT' in tweet):
-            retweet = True
-        return hashtag, a, retweet
+            retweet = 1
 
+        return [hashtag, a, retweet]
+
+    """
+    Input: Text of the tweet
+    Output: If there exist any abbreviations.
+    """
     def abbreviation(self, tweet):
-        with open('acronymsDic.csv', 'rb') as dic:
+        with open('abbsDic.csv', 'rb') as dic:
             rdr = csv.reader(dic)
-            acronym = False
+            acronym = 0
             for row in rdr:
                 for abb in row:
                     if(abb) in tweet:
-                        acronym = True
+                        acronym = 1
             dic.close()
         return acronym
+
 
     #def subTree(self, tweet):
 
