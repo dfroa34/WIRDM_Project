@@ -66,7 +66,7 @@ class semanticFeatureExtractor:
     #   - tweet: a tweet to check for any speech act verbs
     #   Please note that the input needs to be a PREPROCESSED tweet!
     #Output:
-    #   - speechAct: a single boolean value (0, 1) indicating
+    #   - speechAct: a list of boolean values (0, 1) indicating
     #       the presence of a speech act verb in the given tweet
     def speechAct(self, tweet):
         with open('SpeechActVerbs.csv', 'rb') as lexicon:
@@ -75,13 +75,35 @@ class semanticFeatureExtractor:
             for row in reader:
                 for speechActWord in row:
                     if speechActWord in tweet:
-                        speechAct + [1]
+                        speechAct += [1]
                     else:
-                        speechAct + [0]
+                        speechAct += [0]
             lexicon.close()
         return speechAct
 
     # Semantic analysis of English performative verbs
     # http://www.uqtr.ca/~vandervk/english_performative_verbs_ch6.pdf
+
+#----------------------------------------------------------------------------------------------------------------------
+
+    #Check for the appearance of the most common bigrams in a tweet
+    #
+    #Input:
+    #   - tweet: a tweet to check for any of the bigrams
+    #Output:
+    #   - biGram: a list of boolean values (0, 1) indicating
+    #      the presence of a bigram in the given tweet
+    def biGrams(tweet):
+        with open('BiGrams.csv', 'rb') as lexicon:
+            reader = csv.reader(lexicon)
+            biGram = []
+            for row in reader:
+                for biGramWords in row:
+                    if biGramWords in tweet:
+                        biGram += [1]
+                    else:
+                        biGram += [0]
+            lexicon.close()
+        return biGram
 
 #######################################################################################################################
