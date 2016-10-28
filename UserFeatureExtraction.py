@@ -14,6 +14,7 @@ import datetime
 def originality(username, numberOfTweets):
     numberOfOriginalTweets = 0
     numberOfRetweets = 0
+    numberOfTweets = int(numberOfTweets)
     if numberOfTweets > 200:
         numberOfTweets = 200
     try:
@@ -81,6 +82,7 @@ def influence(username):
 #   - engagement: an indication how active a user is
 def engagement(username, numberOfTweets):
     try:
+        numberOfTweets = int(numberOfTweets)
         user = userTweets.api.get_user(username)
         numberOfFavs = user.favourites_count
         accountAge = datetime.datetime.now().date() - user.created_at.date()
@@ -91,5 +93,4 @@ def engagement(username, numberOfTweets):
         engagement = "N/A"
         pass
     return engagement
-
 #######################################################################################################################

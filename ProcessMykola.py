@@ -28,9 +28,11 @@ with open('tweets.csv','rb') as ogn:
 Semantic = SemanticFeatureExtraction.semanticFeatureExtractor()
 Syntactic = SyntacticFeatureExtraction.syntacticFeatureExtractor()
 feature_list = []
+count = 0
 
 for row in basic:
     feature = []
+    feature += row
     # Extract semantic features
     opinion = Semantic.opinionWords(row[3])
     vulgar = Semantic.vulgarWords(row[3])
@@ -55,12 +57,16 @@ for row in basic:
     origin = UserFeatureExtraction.originality(row[0], row[6])
     credit = UserFeatureExtraction.credibility(row[0])
     influence = UserFeatureExtraction.influence(row[0])
+    egagement = UserFeatureExtraction.engagement(row[0], row[6])
     feature.append(origin)
     feature.append(credit)
     feature.append(influence)
-
+    feature.append(egagement)
+    feature.append(labels[count])
+    count += 1
     feature_list.append(feature)
 
-with open('newMykola.csv','wb') as Mykola:
-
-
+with open('newMykola.csv','wb') as file:
+    wrt = csv.writer(file)
+    for feature in feature_list:
+        wrt.writerow(feature)
