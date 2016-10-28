@@ -1,6 +1,7 @@
 __author__ = 's149830'
 
 import csv
+import re
 
 class syntacticFeatureExtractor:
     """
@@ -50,6 +51,11 @@ class syntacticFeatureExtractor:
         return acronym
 
 
-    #def subTree(self, tweet):
+    def containsURL(self, text):
+        pattern = 'http'
+        if re.search(pattern, text):
+            return 1
+        else:
+            return 0
 
 
