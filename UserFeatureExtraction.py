@@ -25,7 +25,7 @@ def originality(username, numberOfTweets):
     if numberOfRetweets == 0:
         numberOfRetweets = 1
     originality = float(numberOfOriginalTweets) / float(numberOfOriginalTweets+numberOfRetweets)
-    return originality, numberOfOriginalTweets, numberOfRetweets
+    return originality
 
 #----------------------------------------------------------------------------------------------------------------------
 

@@ -2,10 +2,10 @@ import tweepy  # https://github.com/tweepy/tweepy
 import csv
 
 # Twitter API credentials
-consumer_key = "dspa2PuUl7kNZjjpxmeJeh4WO"
-consumer_secret = "fKJ4zB6pS6bEVZShNKjfUIC6Qk2YjtL20U8qr3goQQuIAPJsEI"
-access_key = "27402509-6zlqaqSnr44DgimjhChNHlawxcEiRjJSCrjwdLbFt"
-access_secret = "9wzHsutuJFota3HFFaFPX8WXT8S0fp13d76BNboV55xu5"
+consumer_key = "IhyKiqN6JJgvmeBQeBKiPoCtX"
+consumer_secret = "DPiWDUCymkYxNYBMkwaTkZD85oHDwC23gtOJ2woE0BFaCrJo3Z"
+access_key = "2609369460-otRuCCeuDmZxOwug2gJZlhF3PKPNA4tn0msGwH9"
+access_secret = "mejOpj5q4mgg03wMOxBTVuZ6ZOjiTuxhBpMGFne1Cj4c0"
 
 # authorize twitter, initialize tweepy
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -65,15 +65,11 @@ def get_all_tweets(screen_name):
         writer = csv.writer(f)
         writer.writerow(["id", "created_at", "text"])
         writer.writerows(outtweets)
-
     pass
-
 
 if __name__ == '__main__':
     # pass in the username of the account you want to download
     get_all_tweets("sonar_guy")
-
-
 
 def get_X_tweets(screen_name, number_of_tweets):
     return api.user_timeline(screen_name = screen_name, count = number_of_tweets, include_rts = True)

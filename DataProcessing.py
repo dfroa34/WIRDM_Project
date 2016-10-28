@@ -1,12 +1,10 @@
 __author__ = 's149830'
 
 import csv
-import json
 import ast
 import SemanticFeatureExtraction
 import SyntacticFeatureExtraction
 import UserFeatureExtraction
-import sys
 
 f = open('backup2.txt','r')
 rawTweets = f.readlines()
@@ -58,16 +56,17 @@ for tweet in tweetData[0:5]:
     feature.append(abbriviation)
 
     #Extract user features
-
+    origin = UserFeatureExtraction.originality(userName, status)
+    credit = UserFeatureExtraction.credibility(userName)
+    influence = UserFeatureExtraction.influence(userName)
+    feature.append(origin)
+    feature.append(credit)
+    feature.append(influence)
     feature_list.append(feature)
 
-print feature_list[0]
-
-with open('newDataSet.csv', 'w') as dts:
-    wtr = csv.writer(dts, sys.stdout)
-    wtr.writerow(feature_list[0])
-
-
-
+with open('newDataSet.csv', 'wb') as dts:
+    wrt = csv.writer(dts, dialect='excel')
+    for feature in feature_list:
+        wrt.writerow(feature)
 
 
