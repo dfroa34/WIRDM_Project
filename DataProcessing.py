@@ -32,6 +32,7 @@ for tweet in tweetData[0:200]:
     following = tweet['user']['friends_count']
     status = tweet['user']['statuses_count']
 
+    """
     #urls = tweet['entities']['urls'][0]['url'] if tweet['entities']['urls'][0] else 'None'
     feature.append(userName)
     feature.append(userID)
@@ -41,7 +42,9 @@ for tweet in tweetData[0:200]:
     feature.append(following)
     feature.append(status)
     #feature.append(urls)
+    """
 
+    """
     #Extract semantic features
     opinion = semanticExtract.opinionWords(text)
     vulgar = semanticExtract.vulgarWords(text)
@@ -61,6 +64,7 @@ for tweet in tweetData[0:200]:
     feature.extend(tweetSpecific)
     feature.append(abbriviation)
     feature.append(url)
+    """
 
     #Extract user features
     origin = UserFeatureExtraction.originality(userName, status)
