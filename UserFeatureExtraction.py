@@ -3,6 +3,8 @@ import datetime
 
 #######################################################################################################################
 
+
+
 #Calculate an originality score for the user, which is defined as the number of original
 #tweets from a user (so not a retweet) divided by the total number of tweets from a user
 #
@@ -93,4 +95,28 @@ def engagement(username, numberOfTweets):
         engagement = "N/A"
         pass
     return engagement
+
+    # ----------------------------------------------------------------------------------------------------------------------
+
+    # Check how is the role of an user in Twitter. This means if a user
+    # behaves more as a broadcaster or a receiver
+    #
+    # Input:
+    #   - username: a user to check the engagement for
+    #
+    # Output:
+    #   - role: ration between followers and friends
+def role(username):
+    role = 0
+    try:
+        user = userTweets.api.get_user(username)
+        followers = user.followers_count
+        friends = user.friends_count
+        role = followers/float(friends)
+    except Exception, e:
+        role = 0
+        pass
+    return role
+
 #######################################################################################################################
+
