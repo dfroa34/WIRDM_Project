@@ -1,0 +1,3 @@
+[Properties]
+terrierLocation = C:\Software\terrier-core-4.1-bin\terrier-core-4.1
+K = 4
