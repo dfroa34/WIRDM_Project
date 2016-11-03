@@ -71,13 +71,11 @@ class semanticFeatureExtractor:
     def speechAct(self, tweet):
         with open('SpeechActVerbs.csv', 'rb') as lexicon:
             reader = csv.reader(lexicon)
-            speechAct = []
+            speechAct = 0
             for row in reader:
                 for speechActWord in row:
                     if speechActWord in tweet:
-                        speechAct += [1]
-                    else:
-                        speechAct += [0]
+                        speechAct = 1
             lexicon.close()
         return speechAct
 
