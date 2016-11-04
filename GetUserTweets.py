@@ -70,3 +70,28 @@ def get_all_tweets(screen_name):
 if __name__ == '__main__':
     # pass in the username of the account you want to download
     get_all_tweets("sonar_guy")
+
+#######################################################################################################################
+
+#Try and find all the replies to a certain tweet
+#that is classified as a possible rumor
+#
+#Input:
+#   - tweetID: the ID of the tweet that we want to find replies for
+#   - screenName: the screenName of the user of the given tweet
+#Output:
+#    - users: a list of screenNames from users that have replied to
+#       the tweet given as an input
+def findReplies(tweetID, screenName):
+    userName = "to:" + screenName
+    users = []
+    try:
+        for tweets in api.search(userName, count = 100):
+            if tweets.in_reply_to_status_id == tweetID:
+                if tweets.author.screen_name not in users:
+                    users.append(tweets.author.screen_name)
+    except Exception, e:
+        pass
+    return users
+
+#######################################################################################################################
